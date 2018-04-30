@@ -32,7 +32,7 @@ python kinSim2.py simpleWorldKobuki.xml
 
 * **Sayantan Datta** 
 
-* **Billie Thompson** - *Initial work* - [klampt simulation](https://github.com/AgarwalSaurav/klampt_simulations)
+* **Saurav Agarwal** - *Initial work* - [klampt simulation](https://github.com/AgarwalSaurav/klampt_simulations)
 
 ## License
 
