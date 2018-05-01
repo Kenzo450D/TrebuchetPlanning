@@ -29,7 +29,6 @@ from decimal import Decimal
 from rrtMulti import RRTMulti
 
 def collisionDetector(collisionChecker, robot, world, robotID, ttConfigs):
-    print "ttConfigs: ",ttConfigs
     for rConfig in ttConfigs:
         print "Configuration: ", rConfig
         robot.setConfig(rConfig)
@@ -139,9 +138,9 @@ if __name__ == "__main__":
     noCollisionConfig.append([-5.5, -5.5, 0,0,0,0]) #sphere1
     noCollisionConfig.append([-4.5, -4.5, 0,0,0,0]) #sphere2
 
-    # -- set kobuki large robot at starting point
-    kobukiL.setConfig(ttStartPos)
-    kobukiS.setConfig(noCollisionConfig[1])
+    # -- set all robots to their no collision configuration
+    for index, robot in enumerate(allRobotList) :
+        robot.setConfig(noCollisionConfig[index])
 
     # -- set the turtlebots outside the map
     # tbot2.setConfig([-5,-5,0])
@@ -178,11 +177,20 @@ if __name__ == "__main__":
         p2 = round(item[2],3)
         print "kinSim :: Robot :",robotConfigs[idx],"Config: ", idx, " :: ", p0, p1, p2
     print "------------------------------------------------------------"
-    sys.exit(0)
+    
     # collisionChecker, robot, world, robotID, ttConfigs
-    collisionDetector(collisionChecker, kobukiL, world, 0, ttConfigs)
-    kobukiL.setConfig(ttConfigs[0])
-
+    # NOTE: Not Required in the final version, this is a unit test
+    #collisionDetector(collisionChecker, kobukiL, world, 0, ttConfigs)
+    #print "Check Collision with the Smaller Robot! "
+    #collisionDetector(collisionChecker, kobukiS, world, 0, ttConfigs)
+    #sys.exit(0)
+    
+    # -- reset the positions of the robots
+    for index, robot in enumerate(allRobotList) :
+        robot.setConfig(noCollisionConfig[index])
+    curRobot = allRobotList[robotConfigs[0]]
+    curRobot.setConfig(ttConfigs[0])
+    
     ## On-screen text display
     vis.addText("textConfig","Robot configuration: ")
     vis.setAttribute("textConfig","size",24)
@@ -206,13 +214,10 @@ if __name__ == "__main__":
     count = 1
     rTime = None # reached time - measures time after reaching goal
     goalReachFlag = False
-    lastConfig = kobukiL.getConfig()
-    curRobot = kobukiL
+    lastConfig = curRobot.getConfig()
     changeConfigurationOfRobot = False
     count = 0
 
-    # scale robot when required
-    # nothing else!!!, no kobukiS, no CurRobot
     while vis.shown() and (time.time() - startTime < simTime):
         # if (count == 2000) :
         #     sys.exit(0)
@@ -220,7 +225,11 @@ if __name__ == "__main__":
         print "Config: ", configIdx, " of ", configLen
         flagOverdone = False
         flagOrientationOverdone = False
+        
+        # -- Local Visualization
         vis.lock()
+        
+        # -- Delta Time for current Step
         deltaT = time.time() - oldTime
         oldTime = time.time()
         # print "deltaT: ", deltaT
@@ -229,14 +238,17 @@ if __name__ == "__main__":
         rId = robotConfigs[configIdx]
 
         print "Last Configuration: ", lastConfig
+        print "Robot Configuration to Use: ", rId
 
         if changeConfigurationOfRobot == True :
             # change the shape of the robot
-            if (robotConfigs[configIdx-1] > robotConfigs[configIdx]) :
-                curRobot.scaleRobot(2)
-
-            elif (robotConfigs[configIdx-1] < robotConfigs[configIdx]) :
-                curRobot.scaleRobot(0.5)
+            # reset the robots
+            for index, robot in enumerate(allRobotList) :
+                robot.setConfig(noCollisionConfig[index])
+            curRobot =  allRobotList[rId]
+            curRobot.setConfig(lastConfig)
+            changeConfigurationOfRobot = False
+            
         
         else :
         # -- update a config in two parts
@@ -248,8 +260,6 @@ if __name__ == "__main__":
             q = curRobot.getConfig()
             print ("CurRobot: ", curRobot.robotName)
             print ("CurRobot Position: ", q)
-            if (curRobot.robotName == 'kobukiS'):
-                sys.exit(0)
 
             # -- update the orientation
             # to go to next pose, use get orientation function to check omega
@@ -293,8 +303,6 @@ if __name__ == "__main__":
                     omega = 5
                 deltaT = time.time() - oldTime
                 curRobot.velControlKin(vel, omega, deltaT)
-                if (curRobot.robotName == 'kobukiS') :
-                    curRobot.velControlKin(vel, omega, 1)
                 print "Velocity: ", vel
                 print "Omega: ", omega
                 print "deltaT: ", deltaT
@@ -336,10 +344,9 @@ if __name__ == "__main__":
                     curRobot.setConfig(tmpConfig)
                     lastConfig = curRobot.getConfig()[0:3]
                     configIdx = configIdx + 1
-                    if configIdx == len(ttConfigs) :
-                        changeConfigurationOfRobot = False
-                        continue
-                    if rId != robotConfigs[configIdx] :
+                    
+                    if (configIdx != len(ttConfigs)) and (rId != robotConfigs[configIdx]) :
+                        # it is not the goal configuration
                         # the next configuration requires a change of shape
                         changeConfigurationOfRobot = True
 
