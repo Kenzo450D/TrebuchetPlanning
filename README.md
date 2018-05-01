@@ -31,6 +31,12 @@ cd simTests
 python kinSimMulti.py simpleWorldMultiRobot.xml
 ```
 
+To run the complete Demo with a turtlebot and 4 spheres representing people walking around it, execute this:
+
+```
+cd simTests
+python kinSimMultiAgent.py simpleWorldMultiAgentSystem.xml
+```
 
 ### Built With
 

@@ -12,6 +12,7 @@ from klampt import vis
 from klampt.vis.glcommon import GLWidgetPlugin
 from klampt.math import so3
 import mathUtils
+import sys
 class sphero6DoF(object):
     def __init__ (self, robot, robotName, vis=None):
         self.robot = robot
@@ -30,12 +31,16 @@ class sphero6DoF(object):
 
     def setConfig(self, qC):
         q = self.robot.getConfig()
+        #print ('Config of robot: ',q)
+        #print ('Config sent: ', qC)
+        #print ('lenth of config sent: ', len(qC))
         q[0] = qC[0]
         q[1] = qC[1]
         q[2] = qC[2]
         q[3] = qC[3]
         q[4] = qC[4]
         q[5] = qC[5]
+        #sys.exit(0)
         self.robot.setConfig(q)
         if self.vis is not None:
             trans = self.getTransform()
