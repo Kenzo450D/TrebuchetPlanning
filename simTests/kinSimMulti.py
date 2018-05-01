@@ -178,6 +178,21 @@ if __name__ == "__main__":
         print "kinSim :: Robot :",robotConfigs[idx],"Config: ", idx, " :: ", p0, p1, p2
     print "------------------------------------------------------------"
     
+    ## Fix formation of robot to prefer smaller formation for one step after shift
+    # This is done so that, the robot doesn't immediately change from smaller to
+    # larger formation. Doing so, makes a collision at that time instant
+    
+    prevConfig = None
+    for idx, item in enumerate(robotConfigs) :
+        if (idx == 0):
+            prevConfig = item
+            continue
+        if item < prevConfig:
+            robotConfigs[idx] = prevConfig
+        prevConfig = item
+    
+    
+    
     # collisionChecker, robot, world, robotID, ttConfigs
     # NOTE: Not Required in the final version, this is a unit test
     #collisionDetector(collisionChecker, kobukiL, world, 0, ttConfigs)
@@ -235,7 +250,8 @@ if __name__ == "__main__":
         # print "deltaT: ", deltaT
 
         # -- check which Robot formation to use
-        rId = robotConfigs[configIdx]
+        if configIdx != len(robotConfigs):
+            rId = robotConfigs[configIdx]
 
         print "Last Configuration: ", lastConfig
         print "Robot Configuration to Use: ", rId
