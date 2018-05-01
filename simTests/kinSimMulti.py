@@ -173,7 +173,10 @@ if __name__ == "__main__":
     print "Config[0]: ", ttConfigs[0]
     print "Last Config: ", ttConfigs[-1]
     for idx,item in enumerate(ttConfigs):
-        print "kinSim :: Robot :",robotConfigs[idx],"Config: ", idx, " :: ", item
+        p0 = round(item[0],3)
+        p1 = round(item[1],3)
+        p2 = round(item[2],3)
+        print "kinSim :: Robot :",robotConfigs[idx],"Config: ", idx, " :: ", p0, p1, p2
     print "------------------------------------------------------------"
     sys.exit(0)
     # collisionChecker, robot, world, robotID, ttConfigs
