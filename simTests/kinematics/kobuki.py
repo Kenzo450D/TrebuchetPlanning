@@ -15,6 +15,7 @@ from klampt.vis.glcommon import GLWidgetPlugin
 from klampt.math import so3
 import math
 import mathUtils
+import sys
 
 class kobuki(object):
     def __init__ (self, robot, robotName, vis=None):
@@ -95,3 +96,8 @@ class kobuki(object):
             pt = trans[1]
             pt[2] = pt[2] + self.delZ
             self.vis.add(self.robotName,[rotMat, pt], keepAppearance=True)
+
+    def scaleRobot(self, scale):
+        q = self.robot.getConfig()
+        scalMat = [scale,0.0,0.0,0.0,scale,0.0,0.0,0.0,scale]
+        self.vis.add(self.robotName,[scalMat,[q[0], q[1], q[2]]], keepAppearance=True)

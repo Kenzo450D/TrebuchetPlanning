@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<world>
+  <!-- Provide a name and location to the robot file -->
+  <!-- Robot: kobukiL: kobuki Large
+	   A bot 8 times the size of kobuki
+	   This represents the usual configuration of the composite Robot
+   -->
+  <!--
+  <robot name="kobukiL" file="../mobile_robots/kobuki5/kobuki5.rob" /> 
+  
+  -->
+  <robot name="kobukiL" file="../mobile_robots/kobuki8/kobuki8.rob" />
+  
+
+
+  <!-- Robot: kobukiS: kobuki Small
+	   A bot 4 times the size of kobuki
+	   This represents the contracted configuration of the composite Robot
+   -->
+   <!--
+  <robot name="kobukiS" file="../mobile_robots/kobuki4/kobuki4.rob" /> 
+  -->
+  <robot name="kobukiS" file="../mobile_robots/kobuki4/kobuki4.rob" /> 
+  
+  <!--
+  <robot name="tbot" file="../mobile_robots/turtlebot/turtlebot.rob" />
+
+  <robot name="roboSphere" file="../mobile_robots/sphero/sphero.rob" /> 
+
+  <robot name="roboSphere" file="../mobile_robots/sphero/sphero.rob" /> 
+  -->
+
+  <!--
+  <robot name="tbot2" file="../mobile_robots/turtlebot/turtlebot.rob" />
+  
+  <robot name="kobuki" file="../mobile_robots/kobuki/kobuki.rob" /> 
+
+	-->
+  
+<!--
+  <robot name="roboSphere" file="../mobile_robots/sphero/sphero.rob" /> 
+ -->
+
+  <!-- Provide the location to the terrain file, the scale, the position 
+       The default size for block.off is 4 X 4 X 0.1. Scale it accordingly -->
+
+  <terrain file="block.off"  scale="2 2 2" translation="0 0 0"/>
+</world>
+
