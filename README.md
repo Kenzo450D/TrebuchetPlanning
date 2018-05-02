@@ -40,17 +40,26 @@ python kinSimMultiAgent.py simpleWorldMultiAgentSystem.xml
 
 ### Results
 
-The following images illustrate the single robot RRT implemented:
+The following images illustrate the single robot RRT path from start to goal position:
 
 ![Single Robot RRT Image1](docs/images/pic1.png?raw=true "Single Robot RRT - #1")
+Figure 1: Single Robot RRT (Image 1/9)
 ![Single Robot RRT Image1](docs/images/pic2.png?raw=true "Single Robot RRT - #2")
+Figure 2: Single Robot RRT (Image 2/9)
 ![Single Robot RRT Image1](docs/images/pic3.png?raw=true "Single Robot RRT - #3")
+Figure 3: Single Robot RRT (Image 3/9)
 ![Single Robot RRT Image1](docs/images/pic4.png?raw=true "Single Robot RRT - #4")
+Figure 4: Single Robot RRT (Image 4/9)
 ![Single Robot RRT Image1](docs/images/pic5.png?raw=true "Single Robot RRT - #5")
+Figure 5: Single Robot RRT (Image 5/9)
 ![Single Robot RRT Image1](docs/images/pic6.png?raw=true "Single Robot RRT - #6")
+Figure 6: Single Robot RRT (Image 6/9)
 ![Single Robot RRT Image1](docs/images/pic7.png?raw=true "Single Robot RRT - #7")
+Figure 7: Single Robot RRT (Image 7/9)
 ![Single Robot RRT Image1](docs/images/pic8.png?raw=true "Single Robot RRT - #8")
+Figure 8: Single Robot RRT (Image 8/9)
 ![Single Robot RRT Image1](docs/images/pic9.png?raw=true "Single Robot RRT - #9")
+Figure 9: Single Robot RRT (Image 9/9)
 
 ### Built With
 
