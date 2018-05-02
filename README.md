@@ -38,6 +38,20 @@ cd simTests
 python kinSimMultiAgent.py simpleWorldMultiAgentSystem.xml
 ```
 
+### Results
+
+The following images illustrate the single robot RRT implemented:
+
+![Single Robot RRT Image1](docs/images/pic1.png?raw=true "Single Robot RRT - #1")
+![Single Robot RRT Image1](docs/images/pic2.png?raw=true "Single Robot RRT - #2")
+![Single Robot RRT Image1](docs/images/pic3.png?raw=true "Single Robot RRT - #3")
+![Single Robot RRT Image1](docs/images/pic4.png?raw=true "Single Robot RRT - #4")
+![Single Robot RRT Image1](docs/images/pic5.png?raw=true "Single Robot RRT - #5")
+![Single Robot RRT Image1](docs/images/pic6.png?raw=true "Single Robot RRT - #6")
+![Single Robot RRT Image1](docs/images/pic7.png?raw=true "Single Robot RRT - #7")
+![Single Robot RRT Image1](docs/images/pic8.png?raw=true "Single Robot RRT - #8")
+![Single Robot RRT Image1](docs/images/pic9.png?raw=true "Single Robot RRT - #9")
+
 ### Built With
 
 * [Klampt](http://motion.pratt.duke.edu/klampt/tutorial_install.html) - Robot Visualization Software
